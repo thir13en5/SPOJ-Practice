@@ -1,20 +1,14 @@
+import math
 t = int(input())
-
-def sieve(l,u):
-    non_primes = [0,1]
-    primes = []
-    for num in range(u+1):
-        if num not in non_primes:
-            i = 1
-            while(num*i <= u):
-                non_primes.append(num*i)
-                i+=1
-            primes.append(num)
-    return primes
+a = 0
 for t_i in range(t):
-    lower, upper = map(int, input().split())
-    primes = sieve(lower, upper)
-    for p_i in primes:
-        if p_i >= lower and p_i <= upper: 
-            print(p_i)
-    print("")
+    m, n = map(int, input().split())
+    for j in range(m,n+1):
+        for k in range(2, math.sqrt(n)+1):
+            if j%k == 0:
+                a = 1
+                break
+        if a == 0 and j != 1:
+            print(j)
+            a = 0
+        print("")
